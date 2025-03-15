@@ -1,0 +1,22 @@
+@font-face {
+    font-family: "Josefin Sans";
+    src: url(./font/JosefinSans-Italic-VariableFont_wght.ttf);
+}
+
+body{
+    font-family: Josefin Sans, Segoe UI;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: 1s ease;
+}
+div {
+    background-color: rgb(20, 20, 20);
+    color: rgb(240, 240, 240);
+    text-align: center;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
