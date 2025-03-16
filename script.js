@@ -1,6 +1,11 @@
 const h1 = document.querySelector("h1");
 const toggleButton = document.querySelector("#toggle-btn");
 const toggleIcon = document.querySelector("i");
+const affichage = document.querySelector(".affichage");
+const notification = document.querySelector("#notification");
+
+console.log(notification);
+
 let colorChangeInterval = setInterval(generateColor, 2000);
 let toggleButtonActivated = false;
 
@@ -26,5 +31,25 @@ function toggleStopButton() {
   toggleButtonActivated = !toggleButtonActivated;
 }
 
+function getTextContent() {
+  const range = document.createRange();
+  range.selectNodeContents(h1);
+
+  const selection = window.getSelection();
+  selection.removeAllRanges();
+  selection.addRange(range);
+
+  navigator.clipboard.writeText(selection.focusNode.textContent);
+  showNotification();
+}
+
+function showNotification() {
+  notification.classList.add("show");
+  setTimeout(() => {
+    notification.classList.remove("show");
+  }, 3000);
+}
+
 document.addEventListener("DOMContentLoaded", generateColor);
 toggleButton.addEventListener("click", toggleStopButton);
+affichage.addEventListener("click", getTextContent);
