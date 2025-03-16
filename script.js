@@ -1,4 +1,8 @@
 const h1 = document.querySelector("h1");
+const toggleButton = document.querySelector("#toggle-btn");
+const toggleIcon = document.querySelector("i");
+let colorChangeInterval = setInterval(generateColor, 2000);
+let toggleButtonActivated = false;
 
 function generateColor() {
   const rgb = ["red", "green", "blue"];
@@ -11,7 +15,16 @@ function generateColor() {
   document.body.style.backgroundColor = colorString;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  generateColor();
-  setInterval(generateColor, 2000);
-});
+function toggleStopButton() {
+  if (toggleButtonActivated) {
+    colorChangeInterval = setInterval(generateColor, 2000);
+    toggleIcon.classList.replace("fa-play", "fa-pause");
+  } else {
+    clearInterval(colorChangeInterval);
+    toggleIcon.classList.replace("fa-pause", "fa-play");
+  }
+  toggleButtonActivated = !toggleButtonActivated;
+}
+
+document.addEventListener("DOMContentLoaded", generateColor);
+toggleButton.addEventListener("click", toggleStopButton);
