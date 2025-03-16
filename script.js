@@ -1,10 +1,8 @@
 const h1 = document.querySelector("h1");
 const toggleButton = document.querySelector("#toggle-btn");
 const toggleIcon = document.querySelector("i");
-const affichage = document.querySelector(".affichage");
+const display = document.querySelector(".display");
 const notification = document.querySelector("#notification");
-
-console.log(notification);
 
 let colorChangeInterval = setInterval(generateColor, 2000);
 let toggleButtonActivated = false;
@@ -52,4 +50,4 @@ function showNotification() {
 
 document.addEventListener("DOMContentLoaded", generateColor);
 toggleButton.addEventListener("click", toggleStopButton);
-affichage.addEventListener("click", getTextContent);
+display.addEventListener("click", getTextContent);
