@@ -3,9 +3,19 @@ const toggleButton = document.querySelector("#toggle-btn");
 const toggleIcon = document.querySelector("i");
 const display = document.querySelector(".display");
 const notification = document.querySelector("#notification");
+const speedRange = document.querySelector("#interval-speed");
+const speedRangeValue = document.querySelector("#interval-speed-display");
 
-let colorChangeInterval = setInterval(generateColor, 2000);
+const speedInterval = () => 2000 / Number(speedRange.value);
+
+let colorChangeInterval = setInterval(generateColor, speedInterval());
 let toggleButtonActivated = false;
+
+const updateInterval = function () {
+  if (toggleButtonActivated) return;
+  clearInterval(colorChangeInterval);
+  colorChangeInterval = setInterval(generateColor, speedInterval());
+};
 
 function generateColor() {
   const rgb = ["red", "green", "blue"];
@@ -20,7 +30,7 @@ function generateColor() {
 
 function toggleStopButton() {
   if (toggleButtonActivated) {
-    colorChangeInterval = setInterval(generateColor, 2000);
+    colorChangeInterval = setInterval(generateColor, speedInterval());
     toggleIcon.classList.replace("fa-play", "fa-pause");
   } else {
     clearInterval(colorChangeInterval);
@@ -29,7 +39,7 @@ function toggleStopButton() {
   toggleButtonActivated = !toggleButtonActivated;
 }
 
-function getTextContent() {
+function copyColorToClipboard() {
   const range = document.createRange();
   range.selectNodeContents(h1);
 
@@ -50,4 +60,8 @@ function showNotification() {
 
 document.addEventListener("DOMContentLoaded", generateColor);
 toggleButton.addEventListener("click", toggleStopButton);
-display.addEventListener("click", getTextContent);
+display.addEventListener("click", copyColorToClipboard);
+speedRange.addEventListener("input", function () {
+  speedRangeValue.textContent = `x${speedRange.value}`;
+  updateInterval();
+});
