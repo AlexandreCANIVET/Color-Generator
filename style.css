@@ -3,14 +3,18 @@
     src: url(./font/JosefinSans-Italic-VariableFont_wght.ttf);
 }
 
+:root {
+    --dynamic-color: transparent
+}
 body {
+    background-color: var(--dynamic-color);
     font-family: Josefin Sans, Segoe UI;
     min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    transition: 1s ease;
+    transition: 1s linear;
     position: relative;
 }
 
@@ -42,6 +46,11 @@ transition: 0.5s;
     cursor: pointer;
 }
 
+h1{
+    color: var(--dynamic-color);
+    transition: 1s linear;
+}
+
 .feature {
 display: flex;
 justify-content: space-between;
@@ -55,9 +64,6 @@ gap: 5px;
     border-radius: 20px;
     padding: 19px;
     place-self: start;
-    background-color: rgb(20, 20, 20);
-    color: rgb(240, 240, 240);
-    /* min-height: 60px; */
 }
 
 input[type="checkbox"] {
@@ -65,7 +71,7 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked + label {
-    filter: brightness(150%);
+    filter: brightness(200%);
   }
 
 #toggle-btn {
@@ -77,13 +83,47 @@ label i {
     height: 20px;
     width: 20px;
   }
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    background: transparent; 
+}
 
+input[type="range"]::-webkit-slider-runnable-track {
+    background-color: var(--dynamic-color);  
+    border-radius: 50px;
+    transition: 1s linear;
+}
+
+input[type="range"]::-webkit-slider-thumb{
+    background-color: var(--dynamic-color); 
+    filter: invert(1); 
+    border: 2px solid black;
+    width: 16px;  
+    height: 16px;
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: 1s linear;
+}
+input[type="range"]::-moz-range-thumb {
+    background-color: var(--dynamic-color);
+    filter: invert(1);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid black;
+    cursor: pointer;
+    transition: 1s linear;
+  
+}
 #interval-speed-display{
     display: inline-block;
     min-width: 38px;
     text-align: center;
     transition: 0.5s linear;
     transform: translateY(-4px);
-    
-    /* font-variant-numeric: tabular-nums; */
+    user-select: none;
 }

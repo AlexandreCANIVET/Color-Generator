@@ -25,7 +25,7 @@ function generateColor() {
   const colorString = `rgb(${colorMaker.join(",")})`;
 
   h1.textContent = colorString;
-  document.body.style.backgroundColor = colorString;
+  document.documentElement.style.setProperty("--dynamic-color", colorString);
 }
 
 function toggleStopButton() {
