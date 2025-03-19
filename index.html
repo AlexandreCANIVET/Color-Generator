@@ -13,17 +13,18 @@
 
 <body>
     <p id="notification">Color copied to clipboard !</p>
-    <div class="app">
-        <div class="display">
+    <div class="user-interface">
+        <div class="interface-container">
             <h1></h1>
-            <p><em>Click to copy the color</em></p>
+            <p id="instruction-text"></p>
         </div>
-        <div class="feature">
-            <input type="checkbox" id="toggle-btn-checkbox">
-            <label for="toggle-btn-checkbox" id="toggle-btn" class="display"><i class="fa-solid fa-pause"></i></label>
+        <div class="controls">
+            <input type="checkbox" id="play-btn-checkbox">
+            <label for="play-btn-checkbox" id="play-btn" class="interface-container"><i
+                    class="fa-solid fa-pause"></i></label>
             <div class="range-container">
-                <input type="range" id="interval-speed" min="0.25" step="0.25" value="1" max="2">
-                <label for="interval-speed" id="interval-speed-display">x1</label>
+                <input type="range" id="speed-slider" min="0.25" step="0.25" value="1" max="2">
+                <label for="speed-slider" id="slider-label">x1</label>
             </div>
         </div>
     </div>

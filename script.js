@@ -1,12 +1,37 @@
 const h1 = document.querySelector("h1");
-const toggleButton = document.querySelector("#toggle-btn");
+const toggleButton = document.querySelector("#play-btn");
 const toggleIcon = document.querySelector("i");
-const display = document.querySelector(".display");
 const notification = document.querySelector("#notification");
-const speedRange = document.querySelector("#interval-speed");
-const speedRangeValue = document.querySelector("#interval-speed-display");
+const speedRange = document.querySelector("#speed-slider");
+const speedRangeValue = document.querySelector("#slider-label");
+const userInterface = document.querySelector(".user-interface");
+const textElement = document.querySelector("#instruction-text");
 
-const speedInterval = () => 2000 / Number(speedRange.value);
+const messages = [
+  "Left-click to copy the color",
+  "Right-click to hide/show UI",
+];
+let messageIndex = 0;
+
+const updateMessage = () => {
+  textElement.textContent = "";
+  const writeMessage = messages[messageIndex];
+
+  writeMessage.split("").forEach((letter, index) => {
+    setTimeout(() => {
+      textElement.textContent += letter;
+    }, 120 * index);
+  });
+
+  setTimeout(() => {
+    messageIndex = (messageIndex + 1) % messages.length;
+    updateMessage();
+  }, 10000);
+};
+
+updateMessage();
+
+const speedInterval = () => 3000 / Number(speedRange.value);
 
 let colorChangeInterval = setInterval(generateColor, speedInterval());
 let toggleButtonActivated = false;
@@ -60,7 +85,16 @@ function showNotification() {
 
 document.addEventListener("DOMContentLoaded", generateColor);
 toggleButton.addEventListener("click", toggleStopButton);
-display.addEventListener("click", copyColorToClipboard);
+
+document.body.addEventListener("contextmenu", function (e) {
+  e.preventDefault();
+  userInterface.classList.toggle("display-user-interface");
+});
+
+document.body.addEventListener("click", function (e) {
+  if (e.target.matches("input,label,i,.range-container")) return;
+  copyColorToClipboard();
+});
 speedRange.addEventListener("input", function () {
   speedRangeValue.textContent = `x${speedRange.value}`;
   updateInterval();

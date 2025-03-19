@@ -4,8 +4,11 @@
 }
 
 :root {
-    --dynamic-color: transparent
+    --white: rgb(240,240,240);
+    --black: rgb(20,20,20);
+    --dynamic-color: transparent;
 }
+
 body {
     background-color: var(--dynamic-color);
     font-family: Josefin Sans, Segoe UI;
@@ -19,8 +22,8 @@ body {
 }
 
 #notification {
-background-color: rgb(20, 20, 20);
-color: rgb(240, 240, 240);
+background-color: var(--black);
+color: var(--white);
 text-align: center;
 border-radius: 20px;
 padding: 20px;
@@ -28,39 +31,76 @@ box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 position: absolute;
 top: -100px;
 transition: 0.5s;
+}   
 
-}
-#notification.show{
+#notification.show {
     top: 10px;
 }
 
+.user-interface {
+    transition: 0.4s ease;
+}
 
-.display {
-    background-color: rgb(20, 20, 20);
-    color: rgb(240, 240, 240);
+.display-user-interface {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.interface-container {
+    background-color: var(--black);
+    color: var(--white);
     text-align: center;
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     margin-bottom: 33px;
-    cursor: pointer;
+    cursor: default;
 }
 
-h1{
+h1 {
     color: var(--dynamic-color);
     transition: 1s linear;
+   
 }
 
-.feature {
+#instruction-text {
+    min-height: 16px;
+    position: relative;
+}
+
+#instruction-text::after {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    margin-left: 2px;
+    height: 16px;
+    width: 2px;
+    background-color: var(--white);
+    animation: anim 1.6s infinite;
+}
+
+@keyframes anim {
+    0%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.controls {
 display: flex;
 justify-content: space-between;
 gap: 5px;
-
 }
-.range-container{
-    background-color: rgb(20, 20, 20);
+
+.range-container {
+    background-color: var(--black);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    color: rgb(240, 240, 240);
+    color: var(--white);
     border-radius: 20px;
     padding: 19px;
     place-self: start;
@@ -74,7 +114,7 @@ input[type="checkbox"]:checked + label {
     filter: brightness(200%);
   }
 
-#toggle-btn {
+#play-btn {
     cursor: pointer;
     transition: 0.2s;
 }
@@ -108,6 +148,7 @@ input[type="range"]::-webkit-slider-thumb{
     appearance: none;
     transition: 1s linear;
 }
+
 input[type="range"]::-moz-range-thumb {
     background-color: var(--dynamic-color);
     filter: invert(1);
@@ -119,7 +160,8 @@ input[type="range"]::-moz-range-thumb {
     transition: 1s linear;
   
 }
-#interval-speed-display{
+
+#slider-label{
     display: inline-block;
     min-width: 38px;
     text-align: center;
